@@ -22,23 +22,24 @@ book4 = new Book("Srephen Hawkings", "Story of Time", 300, false);
 book4.addToLibrary(myLibrary);
 
 
-divtable = document.querySelector("#div-table");
-console.log(divtable.id);
-mytable = document.createElement("table");
-for (var i = 0; i < myLibrary.length; i++){
+function render() {
+  let divtable = document.getElementById("div-table");
+  let mytable = document.createElement("table");
+
+  for (var i = 0; i < myLibrary.length; i++){
     console.log(myLibrary[i]);
-    row = document.createElement("tr");
-    cellauthor=document.createElement("td");
-    textauthor=document.createTextNode(myLibrary[i].author);
+    let row = document.createElement("tr");
+    let cellauthor = document.createElement("td");
+    let textauthor = document.createTextNode(myLibrary[i].author);
     cellauthor.appendChild(textauthor);
-    celltitle=document.createElement("td");
-    texttitle=document.createTextNode(myLibrary[i].title);
+    let celltitle=document.createElement("td");
+    let texttitle=document.createTextNode(myLibrary[i].title);
     celltitle.appendChild(texttitle);
-    cellpages=document.createElement("td");
-    textpages=document.createTextNode(myLibrary[i].pages);
+    let cellpages=document.createElement("td");
+    let textpages=document.createTextNode(myLibrary[i].pages);
     cellpages.appendChild(textpages);
-    cellread=document.createElement("td");
-    textread=document.createTextNode(myLibrary[i].read);
+    let cellread=document.createElement("td");
+    let textread=document.createTextNode(myLibrary[i].read);
     cellread.appendChild(textread);
 
     row.appendChild(cellauthor);
@@ -48,6 +49,44 @@ for (var i = 0; i < myLibrary.length; i++){
 
     mytable.appendChild(row);
 
+  }
+  divtable.appendChild(mytable);
 }
 
-divtable.appendChild(mytable);
+render();
+
+function formRender() {
+  let formBase = document.getElementById("form");
+
+  let newBookForm = document.createElement("FORM");
+  newBookForm.setAttribute("id","myForm");
+  formBase.appendChild(newBookForm);
+
+  let authorInput = document.createElement("INPUT");
+  authorInput.setAttribute("type", "text");
+  authorInput.setAttribute("placeholder", "Anonymous");
+  newBookForm.appendChild(authorInput);
+
+  let titleInput = document.createElement("INPUT");
+  titleInput.setAttribute("type", "text");
+  titleInput.setAttribute("placeholder", "Anonymous's book");
+  newBookForm.appendChild(titleInput);
+
+  let pagesInput = document.createElement("INPUT");
+  pagesInput.setAttribute("type", "number");
+  pagesInput.setAttribute("placeholder", "200");
+  newBookForm.appendChild(pagesInput);
+
+  let readInput = document.createElement("INPUT")
+  readInput.setAttribute("type", "checkbox");
+  newBookForm.appendChild(readInput);
+
+  let submitButton = document.createElement("Button")
+  submitButton.addEventListener("click",formCapture);
+  submitButton.textContent= "Submit";
+  newBookForm.appendChild(submitButton);
+}
+
+function formCapture(){
+  
+}
