@@ -63,30 +63,52 @@ function formRender() {
   formBase.appendChild(newBookForm);
 
   let authorInput = document.createElement("INPUT");
+  authorInput.setAttribute("id", "authorField")
   authorInput.setAttribute("type", "text");
   authorInput.setAttribute("placeholder", "Anonymous");
   newBookForm.appendChild(authorInput);
 
   let titleInput = document.createElement("INPUT");
+  titleInput.setAttribute("id", "titleField");
   titleInput.setAttribute("type", "text");
   titleInput.setAttribute("placeholder", "Anonymous's book");
   newBookForm.appendChild(titleInput);
 
   let pagesInput = document.createElement("INPUT");
+  pagesInput.setAttribute("id", "pagesField");
   pagesInput.setAttribute("type", "number");
   pagesInput.setAttribute("placeholder", "200");
   newBookForm.appendChild(pagesInput);
 
   let readInput = document.createElement("INPUT")
+  readInput.setAttribute("id", "readChk");
   readInput.setAttribute("type", "checkbox");
   newBookForm.appendChild(readInput);
 
   let submitButton = document.createElement("Button")
   submitButton.addEventListener("click",formCapture);
   submitButton.textContent= "Submit";
+  
   newBookForm.appendChild(submitButton);
 }
 
 function formCapture(){
+ 
+  //prevent reload
   
+
+  //get values
+  const author = document.getElementById("authorField").value;
+  const title = document.getElementById("titleField").value;
+  const pages = document.getElementById("pagesField").value;
+  const read = document.getElementById("readChk").checked;
+
+  newBook = new Book(author, title, pages, read);
+  newBook.addToLibrary(myLibrary);
+
+  //add to table
+  render();
+
+  return false;
+
 }
