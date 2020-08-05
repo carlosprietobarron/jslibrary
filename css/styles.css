@@ -20,3 +20,10 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+.display-table{
+    display: inline-block;
+    background-color: rgb(165, 228, 228);
+    min-height: 50vh;
+    min-width: 90vh;
+}
