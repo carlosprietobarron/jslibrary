@@ -7,7 +7,7 @@ function Book(author, title, pages, read) {
   this.read = read;
 }
 
-Book.prototype.addToLibrary = function (library) {
+Book.prototype.addToLibrary = function pusher(library) {
   library.push(this);
 };
 
@@ -20,37 +20,6 @@ book3.addToLibrary(myLibrary);
 const book4 = new Book('Srephen Hawkings', 'Story of Time', 300, false);
 book4.addToLibrary(myLibrary);
 
-function render() {
-  const divtable = document.getElementById('div-table');
-  const mytable = document.createElement('table');
-
-  for (let i = 0; i < myLibrary.length; i++) {
-    console.log(myLibrary[i]);
-    const row = document.createElement('tr');
-    const cellauthor = document.createElement('td');
-    const textauthor = document.createTextNode(myLibrary[i].author);
-    cellauthor.appendChild(textauthor);
-    const celltitle = document.createElement('td');
-    const texttitle = document.createTextNode(myLibrary[i].title);
-    celltitle.appendChild(texttitle);
-    const cellpages = document.createElement('td');
-    const textpages = document.createTextNode(myLibrary[i].pages);
-    cellpages.appendChild(textpages);
-    const cellread = document.createElement('td');
-    const textread = document.createTextNode(myLibrary[i].read);
-    cellread.appendChild(textread);
-
-    row.appendChild(cellauthor);
-    row.appendChild(celltitle);
-    row.appendChild(cellpages);
-    row.appendChild(textread);
-    removeBtn(row, i);
-    readButton(row, i);
-
-    mytable.appendChild(row);
-  }
-  divtable.appendChild(mytable);
-}
 
 function removeBook(evt) {
   const target = evt.target.param;
@@ -87,6 +56,37 @@ const readButton = function (row, index) {
   cellBtn.param = index;
   row.appendChild(cellBtn);
 };
+
+function render() {
+  const divtable = document.getElementById('div-table');
+  const mytable = document.createElement('table');
+
+  for (let i = 0; i < myLibrary.length; i += 1) {    
+    const row = document.createElement('tr');
+    const cellauthor = document.createElement('td');
+    const textauthor = document.createTextNode(myLibrary[i].author);
+    cellauthor.appendChild(textauthor);
+    const celltitle = document.createElement('td');
+    const texttitle = document.createTextNode(myLibrary[i].title);
+    celltitle.appendChild(texttitle);
+    const cellpages = document.createElement('td');
+    const textpages = document.createTextNode(myLibrary[i].pages);
+    cellpages.appendChild(textpages);
+    const cellread = document.createElement('td');
+    const textread = document.createTextNode(myLibrary[i].read);
+    cellread.appendChild(textread);
+
+    row.appendChild(cellauthor);
+    row.appendChild(celltitle);
+    row.appendChild(cellpages);
+    row.appendChild(textread);
+    removeBtn(row, i);
+    readButton(row, i);
+
+    mytable.appendChild(row);
+  }
+  divtable.appendChild(mytable);
+}
 
 render();
 
