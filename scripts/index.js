@@ -20,16 +20,26 @@ book3.addToLibrary(myLibrary);
 const book4 = new Book('Srephen Hawkings', 'Story of Time', 300, false);
 book4.addToLibrary(myLibrary);
 
+function deleteColumn(index) {
+  const columnDel = document.getElementById(index).remove();  
+}
+
+function updateColumn(index) {
+  const columnUpdate = document.getElementById(`read-${index}`);
+  myLibrary[index].read = !myLibrary[index].read;
+  let newValue = !myLibrary[index].read;
+  columnUpdate.innerHTML = newValue;
+}
+
 function removeBook(evt) {
   const target = evt.target.param;
   myLibrary.splice(target, 1);
-  update();
+  deleteColumn(target);
 }
 
 function updateRead(evt) {
-  const { target } = evt;
-  myLibrary[target.param].read = !myLibrary[target.param].read;
-  update();
+  const { target } = evt;  
+  updateColumn(evt.target.param);
 }
 
 const removeBtn = function (row, index) {
@@ -58,6 +68,7 @@ function render() {
 
   for (let i = 0; i < myLibrary.length; i += 1) {    
     const row = document.createElement('tr');
+    row.setAttribute('id',`${i}`);
     const cellauthor = document.createElement('td');
     const textauthor = document.createTextNode(myLibrary[i].author);
     cellauthor.appendChild(textauthor);
@@ -68,13 +79,14 @@ function render() {
     const textpages = document.createTextNode(myLibrary[i].pages);
     cellpages.appendChild(textpages);
     const cellread = document.createElement('td');
+    cellread.setAttribute('id',`read-${i}`);
     const textread = document.createTextNode(myLibrary[i].read);
     cellread.appendChild(textread);
 
     row.appendChild(cellauthor);
     row.appendChild(celltitle);
     row.appendChild(cellpages);
-    row.appendChild(textread);
+    row.appendChild(cellread);
     removeBtn(row, i);
     readButton(row, i);
 
@@ -144,6 +156,5 @@ function formCapture() {
   const divtable = document.getElementById('div-table');
   const divForm = document.getElementById('form');
   divForm.innerHTML = '';
-  divtable.innerHTML = '';
-  render();
+  update();
 }
