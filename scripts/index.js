@@ -23,11 +23,19 @@ book4.addToLibrary(myLibrary);
 
 
 function removeBook(evt) {
- let target = evt.target;
+ let target = evt.target.param; 
  const deletedBook = myLibrary.splice(target, 1);
  let divtable = document.getElementById("div-table");
  divtable.innerHTML = "";
  render();
+}
+
+function updateRead(evt) {
+  let target = evt.target;
+  myLibrary[target.param].read = !myLibrary[target.param].read;
+  let divtable = document.getElementById("div-table");
+  divtable.innerHTML = "";
+  render();
 }
 
 const removeBtn = function(row, index) {
@@ -36,6 +44,16 @@ const removeBtn = function(row, index) {
   cellBtn.setAttribute("type", "Button");
   cellBtn.setAttribute("id", "btn-"+index);
   cellBtn.textContent = "Remove";
+  cellBtn.param = index;
+  row.appendChild(cellBtn);
+}
+
+const readButton = function(row,index) {
+  let cellBtn = document.createElement("button");
+  cellBtn.addEventListener("click", updateRead);
+  cellBtn.setAttribute("type", "Button");
+  cellBtn.setAttribute("id", "btn-"+index);
+  cellBtn.textContent = "Read";
   cellBtn.param = index;
   row.appendChild(cellBtn);
 }
@@ -66,6 +84,7 @@ function render() {
     row.appendChild(cellpages);
     row.appendChild(textread);
     removeBtn(row, i);
+    readButton(row,i);
 
     mytable.appendChild(row);
 
@@ -77,6 +96,7 @@ render();
 
 function formRender() {
   let formBase = document.getElementById("form");
+  formBase.innerHTML = "";
 
   let newBookForm = document.createElement("FORM");
   newBookForm.setAttribute("id","myForm");
@@ -125,6 +145,8 @@ function formCapture(){
 
   //add to table
   let divtable = document.getElementById("div-table");
+  let divForm = document.getElementById("form");
+  divForm.innerHTML = "";
   divtable.innerHTML = "";
   render();
 
