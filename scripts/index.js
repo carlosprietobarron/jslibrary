@@ -22,6 +22,25 @@ book4 = new Book("Srephen Hawkings", "Story of Time", 300, false);
 book4.addToLibrary(myLibrary);
 
 
+function removeBook(evt) {
+ let target = evt.target;
+ const deletedBook = myLibrary.splice(target, 1);
+ let divtable = document.getElementById("div-table");
+ divtable.innerHTML = "";
+ render();
+}
+
+const removeBtn = function(row, index) {
+  let cellBtn = document.createElement("button");
+  cellBtn.addEventListener("click", removeBook);
+  cellBtn.setAttribute("type", "Button");
+  cellBtn.setAttribute("id", "btn-"+index);
+  cellBtn.textContent = "Remove";
+  cellBtn.param = index;
+  row.appendChild(cellBtn);
+}
+
+
 function render() {
   let divtable = document.getElementById("div-table");
   let mytable = document.createElement("table");
@@ -46,6 +65,7 @@ function render() {
     row.appendChild(celltitle);
     row.appendChild(cellpages);
     row.appendChild(textread);
+    removeBtn(row, i);
 
     mytable.appendChild(row);
 
