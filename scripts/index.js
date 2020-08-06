@@ -5,79 +5,39 @@ function Book(author, title, pages, read) {
   this.title = title;
   this.pages = pages;
   this.read = read;
-
 }
 
 Book.prototype.addToLibrary = function (library) {
   library.push(this);
-}
+};
 
-book1 = new Book("Issac Assimov", "The Foundation", 200, false);
+const book1 = new Book('Issac Assimov', 'The Foundation', 200, false);
 book1.addToLibrary(myLibrary);
-book2 = new Book("Brian Green", "The Elegant Universe", 450, false);
+const book2 = new Book('Brian Green', 'The Elegant Universe', 450, false);
 book2.addToLibrary(myLibrary);
-book3 = new Book("Pablo Cohelo", "The Alchemist", 230, true);
+const book3 = new Book('Pablo Cohelo', 'The Alchemist', 230, true);
 book3.addToLibrary(myLibrary);
-book4 = new Book("Srephen Hawkings", "Story of Time", 300, false);
+const book4 = new Book('Srephen Hawkings', 'Story of Time', 300, false);
 book4.addToLibrary(myLibrary);
 
-
-function removeBook(evt) {
-  let target = evt.target.param;
-  const deletedBook = myLibrary.splice(target, 1);
-  let divtable = document.getElementById("div-table");
-  divtable.innerHTML = "";
-  render();
-}
-
-function updateRead(evt) {
-  let target = evt.target;
-  myLibrary[target.param].read = !myLibrary[target.param].read;
-  let divtable = document.getElementById("div-table");
-  divtable.innerHTML = "";
-  render();
-}
-
-
-const removeBtn = function(row, index) {
-  let cellBtn = document.createElement("button");
-  cellBtn.addEventListener("click", removeBook);
-  cellBtn.setAttribute("type", "Button");
-  cellBtn.setAttribute("id", "btn-" + index);
-  cellBtn.textContent = "Remove";
-  cellBtn.param = index;
-  row.appendChild(cellBtn);
-}
-
-const readButton = function(row,index) {
-  let cellBtn = document.createElement("button");
-  cellBtn.addEventListener("click", updateRead);
-  cellBtn.setAttribute("type", "Button");
-  cellBtn.setAttribute("id", "btn-"+index);
-  cellBtn.textContent = "Read";
-  cellBtn.param = index;
-  row.appendChild(cellBtn);
-}
-
-
 function render() {
-  let divtable = document.getElementById("div-table");
-  let mytable = document.createElement("table");
+  const divtable = document.getElementById('div-table');
+  const mytable = document.createElement('table');
 
-  for (var i = 0; i < myLibrary.length; i++) {
+  for (let i = 0; i < myLibrary.length; i++) {
     console.log(myLibrary[i]);
-    let row = document.createElement("tr");
-    let cellauthor = document.createElement("td");
-    let textauthor = document.createTextNode(myLibrary[i].author);
+    const row = document.createElement('tr');
+    const cellauthor = document.createElement('td');
+    const textauthor = document.createTextNode(myLibrary[i].author);
     cellauthor.appendChild(textauthor);
-    let celltitle = document.createElement("td");
-    let texttitle = document.createTextNode(myLibrary[i].title);
+    const celltitle = document.createElement('td');
+    const texttitle = document.createTextNode(myLibrary[i].title);
     celltitle.appendChild(texttitle);
-    let cellpages = document.createElement("td");
-    let textpages = document.createTextNode(myLibrary[i].pages);
+    const cellpages = document.createElement('td');
+    const textpages = document.createTextNode(myLibrary[i].pages);
     cellpages.appendChild(textpages);
-    let cellread = document.createElement("td");
-    let textread = document.createTextNode(myLibrary[i].read);
+    const cellread = document.createElement('td');
+    const textread = document.createTextNode(myLibrary[i].read);
     cellread.appendChild(textread);
 
     row.appendChild(cellauthor);
@@ -85,70 +45,104 @@ function render() {
     row.appendChild(cellpages);
     row.appendChild(textread);
     removeBtn(row, i);
-    readButton(row,i);
+    readButton(row, i);
 
     mytable.appendChild(row);
-
   }
   divtable.appendChild(mytable);
 }
 
+function removeBook(evt) {
+  const target = evt.target.param;
+  myLibrary.splice(target, 1);
+  const divtable = document.getElementById('div-table');
+  divtable.innerHTML = '';
+  render();
+}
+
+function updateRead(evt) {
+  const { target } = evt;
+  myLibrary[target.param].read = !myLibrary[target.param].read;
+  const divtable = document.getElementById('div-table');
+  divtable.innerHTML = '';
+  render();
+}
+
+const removeBtn = function (row, index) {
+  const cellBtn = document.createElement('button');
+  cellBtn.addEventListener('click', removeBook);
+  cellBtn.setAttribute('type', 'Button');
+  cellBtn.setAttribute('id', `btn-${index}`);
+  cellBtn.textContent = 'Remove';
+  cellBtn.param = index;
+  row.appendChild(cellBtn);
+};
+
+const readButton = function (row, index) {
+  const cellBtn = document.createElement('button');
+  cellBtn.addEventListener('click', updateRead);
+  cellBtn.setAttribute('type', 'Button');
+  cellBtn.setAttribute('id', `btn-${index}`);
+  cellBtn.textContent = 'Read';
+  cellBtn.param = index;
+  row.appendChild(cellBtn);
+};
+
 render();
 
 function formRender() {
-  let formBase = document.getElementById("form");
-  formBase.innerHTML = "";
+  const formBase = document.getElementById('form');
+  formBase.innerHTML = '';
 
-  let newBookForm = document.createElement("FORM");
-  newBookForm.setAttribute("id", "myForm");
+  const newBookForm = document.createElement('FORM');
+  newBookForm.setAttribute('id', 'myForm');
   formBase.appendChild(newBookForm);
 
-  let authorInput = document.createElement("INPUT");
-  authorInput.setAttribute("id", "authorField")
-  authorInput.setAttribute("type", "text");
-  authorInput.setAttribute("placeholder", "Anonymous");
+  const authorInput = document.createElement('INPUT');
+  authorInput.setAttribute('id', 'authorField');
+  authorInput.setAttribute('type', 'text');
+  authorInput.setAttribute('placeholder', 'Anonymous');
   newBookForm.appendChild(authorInput);
 
-  let titleInput = document.createElement("INPUT");
-  titleInput.setAttribute("id", "titleField");
-  titleInput.setAttribute("type", "text");
-  titleInput.setAttribute("placeholder", "Anonymous's book");
+  const titleInput = document.createElement('INPUT');
+  titleInput.setAttribute('id', 'titleField');
+  titleInput.setAttribute('type', 'text');
+  titleInput.setAttribute('placeholder', "Anonymous's book");
   newBookForm.appendChild(titleInput);
 
-  let pagesInput = document.createElement("INPUT");
-  pagesInput.setAttribute("id", "pagesField");
-  pagesInput.setAttribute("type", "number");
-  pagesInput.setAttribute("placeholder", "200");
+  const pagesInput = document.createElement('INPUT');
+  pagesInput.setAttribute('id', 'pagesField');
+  pagesInput.setAttribute('type', 'number');
+  pagesInput.setAttribute('placeholder', '200');
   newBookForm.appendChild(pagesInput);
 
-  let readInput = document.createElement("INPUT")
-  readInput.setAttribute("id", "readChk");
-  readInput.setAttribute("type", "checkbox");
+  const readInput = document.createElement('INPUT');
+  readInput.setAttribute('id', 'readChk');
+  readInput.setAttribute('type', 'checkbox');
   newBookForm.appendChild(readInput);
 
-  let submitButton = document.createElement("Button")
-  submitButton.addEventListener("click", formCapture);
-  submitButton.textContent = "Submit";
-  submitButton.setAttribute("type", "button");
+  const submitButton = document.createElement('Button');
+  submitButton.addEventListener('click', formCapture);
+  submitButton.textContent = 'Submit';
+  submitButton.setAttribute('type', 'button');
 
   newBookForm.appendChild(submitButton);
 }
 
 function formCapture() {
-  //get values
-  const author = document.getElementById("authorField").value;
-  const title = document.getElementById("titleField").value;
-  const pages = document.getElementById("pagesField").value;
-  const read = document.getElementById("readChk").checked;
+  // get values
+  const author = document.getElementById('authorField').value;
+  const title = document.getElementById('titleField').value;
+  const pages = document.getElementById('pagesField').value;
+  const read = document.getElementById('readChk').checked;
 
   newBook = new Book(author, title, pages, read);
   newBook.addToLibrary(myLibrary);
 
-  //add to table
-  let divtable = document.getElementById("div-table");
-  let divForm = document.getElementById("form");
-  divForm.innerHTML = "";
-  divtable.innerHTML = "";
+  // add to table
+  const divtable = document.getElementById('div-table');
+  const divForm = document.getElementById('form');
+  divForm.innerHTML = '';
+  divtable.innerHTML = '';
   render();
-
 }
