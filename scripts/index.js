@@ -20,23 +20,6 @@ book3.addToLibrary(myLibrary);
 const book4 = new Book('Srephen Hawkings', 'Story of Time', 300, false);
 book4.addToLibrary(myLibrary);
 
-
-function removeBook(evt) {
-  const target = evt.target.param;
-  myLibrary.splice(target, 1);
-  const divtable = document.getElementById('div-table');
-  divtable.innerHTML = '';
-  render();
-}
-
-function updateRead(evt) {
-  const { target } = evt;
-  myLibrary[target.param].read = !myLibrary[target.param].read;
-  const divtable = document.getElementById('div-table');
-  divtable.innerHTML = '';
-  render();
-}
-
 const removeBtn = function (row, index) {
   const cellBtn = document.createElement('button');
   cellBtn.addEventListener('click', removeBook);
@@ -86,6 +69,22 @@ function render() {
     mytable.appendChild(row);
   }
   divtable.appendChild(mytable);
+}
+
+function removeBook(evt) {
+  const target = evt.target.param;
+  myLibrary.splice(target, 1);
+  const divtable = document.getElementById('div-table');
+  divtable.innerHTML = '';
+  render();
+}
+
+function updateRead(evt) {
+  const { target } = evt;
+  myLibrary[target.param].read = !myLibrary[target.param].read;
+  const divtable = document.getElementById('div-table');
+  divtable.innerHTML = '';
+  render();
 }
 
 render();
