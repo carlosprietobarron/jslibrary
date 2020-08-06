@@ -23,21 +23,11 @@ book4.addToLibrary(myLibrary);
 
 
 function removeBook(evt) {
-<<<<<<< HEAD
-  let target = evt.target;
+  let target = evt.target.param;
   const deletedBook = myLibrary.splice(target, 1);
   let divtable = document.getElementById("div-table");
   divtable.innerHTML = "";
   render();
-}
-
-const removeBtn = function (row, index) {
-=======
- let target = evt.target.param; 
- const deletedBook = myLibrary.splice(target, 1);
- let divtable = document.getElementById("div-table");
- divtable.innerHTML = "";
- render();
 }
 
 function updateRead(evt) {
@@ -49,7 +39,6 @@ function updateRead(evt) {
 }
 
 const removeBtn = function(row, index) {
->>>>>>> 4cce67da679826ff19a343611c55c146b5a54584
   let cellBtn = document.createElement("button");
   cellBtn.addEventListener("click", removeBook);
   cellBtn.setAttribute("type", "Button");
