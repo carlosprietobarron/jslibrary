@@ -88,16 +88,13 @@ function formRender() {
   let submitButton = document.createElement("Button")
   submitButton.addEventListener("click",formCapture);
   submitButton.textContent= "Submit";
+  submitButton.setAttribute("type", "button");
   
   newBookForm.appendChild(submitButton);
 }
 
 function formCapture(){
- 
-  //prevent reload
-  
-
-  //get values
+   //get values
   const author = document.getElementById("authorField").value;
   const title = document.getElementById("titleField").value;
   const pages = document.getElementById("pagesField").value;
@@ -107,8 +104,8 @@ function formCapture(){
   newBook.addToLibrary(myLibrary);
 
   //add to table
+  let divtable = document.getElementById("div-table");
+  divtable.innerHTML = "";
   render();
-
-  return false;
 
 }
