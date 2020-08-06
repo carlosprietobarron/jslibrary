@@ -38,6 +38,7 @@ function updateRead(evt) {
   render();
 }
 
+
 const removeBtn = function(row, index) {
   let cellBtn = document.createElement("button");
   cellBtn.addEventListener("click", removeBook);
