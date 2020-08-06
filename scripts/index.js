@@ -20,11 +20,12 @@ book3.addToLibrary(myLibrary);
 const book4 = new Book('Srephen Hawkings', 'Story of Time', 300, false);
 book4.addToLibrary(myLibrary);
 
-function deleteColumn(index) {
-  const columnDel = document.getElementById(index).remove();  
+function deleteColumn(index) {  
+  document.getElementById(index).remove();
 }
 
 function updateColumn(index) {
+  console.log(index);
   const columnUpdate = document.getElementById(`read-${index}`);
   myLibrary[index].read = !myLibrary[index].read;
   let newValue = !myLibrary[index].read;
@@ -38,11 +39,10 @@ function removeBook(evt) {
 }
 
 function updateRead(evt) {
-  const { target } = evt;  
   updateColumn(evt.target.param);
 }
 
-const removeBtn = function (row, index) {
+const removeBtn = function removal(row, index) {
   const cellBtn = document.createElement('button');
   cellBtn.addEventListener('click', removeBook);
   cellBtn.setAttribute('type', 'Button');
@@ -52,7 +52,7 @@ const removeBtn = function (row, index) {
   row.appendChild(cellBtn);
 };
 
-const readButton = function (row, index) {
+const readButton = function reader(row, index) {
   const cellBtn = document.createElement('button');
   cellBtn.addEventListener('click', updateRead);
   cellBtn.setAttribute('type', 'Button');
@@ -66,9 +66,9 @@ function render() {
   const divtable = document.getElementById('div-table');
   const mytable = document.createElement('table');
 
-  for (let i = 0; i < myLibrary.length; i += 1) {    
+  for (let i = 0; i < myLibrary.length; i += 1) {
     const row = document.createElement('tr');
-    row.setAttribute('id',`${i}`);
+    row.setAttribute('id', `${i}`);
     const cellauthor = document.createElement('td');
     const textauthor = document.createTextNode(myLibrary[i].author);
     cellauthor.appendChild(textauthor);
@@ -79,7 +79,7 @@ function render() {
     const textpages = document.createTextNode(myLibrary[i].pages);
     cellpages.appendChild(textpages);
     const cellread = document.createElement('td');
-    cellread.setAttribute('id',`read-${i}`);
+    cellread.setAttribute('id', `read-${i}`);
     const textread = document.createTextNode(myLibrary[i].read);
     cellread.appendChild(textread);
 
@@ -102,6 +102,23 @@ function update() {
 }
 
 render();
+
+function formCapture() {
+  // get values
+  const author = document.getElementById('authorField').value;
+  const title = document.getElementById('titleField').value;
+  const pages = document.getElementById('pagesField').value;
+  const read = document.getElementById('readChk').checked;
+
+  newBook = new Book(author, title, pages, read);
+  newBook.addToLibrary(myLibrary);
+
+  // add to table
+  const divtable = document.getElementById('div-table');
+  const divForm = document.getElementById('form');
+  divForm.innerHTML = '';
+  update();
+}
 
 function formRender() {
   const formBase = document.getElementById('form');
@@ -142,19 +159,4 @@ function formRender() {
   newBookForm.appendChild(submitButton);
 }
 
-function formCapture() {
-  // get values
-  const author = document.getElementById('authorField').value;
-  const title = document.getElementById('titleField').value;
-  const pages = document.getElementById('pagesField').value;
-  const read = document.getElementById('readChk').checked;
-
-  newBook = new Book(author, title, pages, read);
-  newBook.addToLibrary(myLibrary);
-
-  // add to table
-  const divtable = document.getElementById('div-table');
-  const divForm = document.getElementById('form');
-  divForm.innerHTML = '';
-  update();
-}
+formRender();
