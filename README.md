@@ -1,17 +1,16 @@
-# Newsweek Page Clone
+# Book Library (javascript)
 
-> This is the project for creating a site using bootstrap (solo project)
+> This app it's a demo of a Book library CRUD app that helps to have an inventory of a little book library.  It's programmed on javascript and html.
 
 ## Built With
 
 - HTML
-- fontawesome
 - CSS
-- Bootstrap 4
+- Javascript
 
 ## Live Demo
 
-https://rawcdn.githack.com/carlosprietobarron/newsweek-bootstrap/b5bea5b8856590255c4646af52e10fdf971d50d7/index.html
+[JSLibrary](https://rawcdn.githack.com/carlosprietobarron/jslibrary/5bc75f8928dff374efb844f46d4496b3fd67a185/index.html)
 
 
 ## Authors
