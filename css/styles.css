@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html {
@@ -18,12 +18,12 @@ body {
   line-height: 2;
   padding: 3rem;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .display-table{
-    display: inline-block;
-    background-color: rgb(165, 228, 228);
-    min-height: 50vh;
-    min-width: 90vh;
+  display: inline-block;
+  background-color: rgb(165, 228, 228);
+  min-height: 50vh;
+  min-width: 90vh;
 }
