@@ -1,0 +1,28 @@
+{
+  "name": "jslibrary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-plugin-react": "^7.20.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosprietobarron/jslibrary.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosprietobarron/jslibrary/issues"
+  },
+  "homepage": "https://github.com/carlosprietobarron/jslibrary#readme"
+}
