@@ -216,3 +216,6 @@ function formRender() {
 }
 
 formRender();
+document.getElementById('form').innerHTML = '';
+
+
